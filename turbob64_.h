@@ -37,7 +37,7 @@ extern unsigned char tb64lutse[];
 
 #define ETAIL()\
   unsigned _l = (in+inlen) - ip;\
-  if(_l == 3) { unsigned _u = ip[0]<<24 | ip[1]<<16 | ip[2]<<8; stou32(op, bswap32(SU32(_u))); op+=4; ip+=3; }\
+  if(_l == 3) { unsigned _u = ip[0]<<24 | ip[1]<<16 | ip[2]<<8; stou32(op, BSWAP32_BE(SU32(_u))); op+=4; ip+=3; }\
   else if(_l) { *op++ = tb64lutse[(ip[0]>>2)&0x3f];\
     if(_l == 2) *op++ = tb64lutse[(ip[0] & 0x3) << 4 | (ip[1] & 0xf0) >> 4],\
                 *op++ = tb64lutse[(ip[1] & 0xf) << 2];\
